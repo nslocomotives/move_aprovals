@@ -48,8 +48,8 @@ def unpack_data(data):
     """Function to unpack data from its encoded form"""
     result = ""
     result = base64.b64decode(data).decode('utf-8')
-    # what is this eval doing?  there should be a better way to do this in python. # pylint: disable=fixme
-    result = ast.literal_eval(result) #pylint disable:W0123
+    # TODO: what is this eval doing?  there should be a better way to do this in python. # pylint: disable=W0511
+    result = ast.literal_eval(result) # pylint: disable=W0123
     return result
 
 board = tt.get_board(BOARD_NAME)
@@ -97,7 +97,7 @@ def move_approval(event, context):
 
     logger.info(" [x] Received %s | %s", data, context)
 
-    # TODO: need to understand what this bt was for and why...
+    # TODO: need to understand what this bt was for and why... # pylint: disable=W0511
 
     #recipiants = data['recipiants']
     #payload = build_payload(data['alert'])
