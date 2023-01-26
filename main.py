@@ -25,19 +25,22 @@ logger.addHandler(ch)
 
 logger.info('Started')
 
+#defining variables
+card_id = ''
+
 #def get_secret(secret_name):
 #    """ A wrapper for the secret variable assignement to perform a get"""
 #    response = ''
 #    response = assign_secret_variable(secret_name)
 #    return response
 
-def unpack_data(data):
-    """Function to unpack data from its encoded form"""
-    result = ""
-    result = base64.b64decode(data).decode('utf-8')
+#def unpack_data(data):
+#    """Function to unpack data from its encoded form"""
+#    result = ""
+#    result = base64.b64decode(data).decode('utf-8')
     # TODO: what is this eval doing?  there should be a better way to do this in python. # pylint: disable=W0511
-    result = ast.literal_eval(result) #pylint disable:W0123
-    return result
+#    result = ast.literal_eval(result) #pylint disable:W0123
+#    return result
 
 def get_card(card_id):
     """Function to get all the data on the card."""
@@ -73,7 +76,7 @@ def move_approval(event, context):
 
     logger.info(" [x] Received %s | %s", data, context)
 
-    ### TODO: need to understand what this bt was for and why...
+    # TODO: need to understand what this bt was for and why...
 
     #recipiants = data['recipiants']
     #payload = build_payload(data['alert'])
