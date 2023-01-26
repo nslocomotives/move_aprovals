@@ -25,11 +25,11 @@ logger.addHandler(ch)
 
 logger.info('Started')
 
-def get_secret(secret_name):
-    """ A wrapper for the secret variable assignement to perform a get"""
-    response = ''
-    response = assign_secret_variable(secret_name)
-    return response
+#def get_secret(secret_name):
+#    """ A wrapper for the secret variable assignement to perform a get"""
+#    response = ''
+#    response = assign_secret_variable(secret_name)
+#    return response
 
 def unpack_data(data):
     """Function to unpack data from its encoded form"""
