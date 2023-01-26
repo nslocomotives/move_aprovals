@@ -40,7 +40,7 @@ def get_card(card_id):
     card = tt.get_card(card_id)
     return card
 
-def get_card_approval(card)
+def get_card_approval(card):
     aproval = False
     return aproval
 
@@ -63,7 +63,7 @@ def move_approval(event, context):
     aproval = get_card_approval(card)
     if approval is True:
         update_list(card, list)
-    
+
     logger.info(" [x] Received %s | %s", data, context)
     recipiants = data['recipiants']
     payload = build_payload(data['alert'])

@@ -40,7 +40,7 @@ jobs:
         coverage run -m pytest
         set -o pipefail
         coverage report -m 2>&1 | tee report_coverage.txt
-        #set +o pipefail
+        set +o pipefail
         coverage html
     - name: Running test Coverage Reports
       run: |
