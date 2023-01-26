@@ -68,6 +68,7 @@ def move_approval(event, context):
         message = message + r"please check the producer is sending event[\'data\'\]"
         logger.info(message)
         return message
+    card_id = ''
     card = get_card(card_id)
     aproval = get_card_approval(card)
     if approval is True:
