@@ -40,15 +40,18 @@ def unpack_data(data):
     return result
 
 def get_card(card_id):
+    """Function to get all the data on the card."""
     card = ''
     card = tt.get_cards(card_id)
     return card
 
 def get_card_approval(card):
+    """A function to get the just the aproval status of a card."""
     aproval = False
     return aproval
 
 def update_list(card, lista):
+    """A function to update the list of cards."""
     response = card.change_list(lista)
     return response
 
