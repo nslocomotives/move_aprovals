@@ -24,6 +24,7 @@ logger.info('Started')
 
 def get_secret(secret_name):
     """ A wrapper for the secret variable assignement to perform a get"""
+    response = ''
     response = assign_secret_variable(secret_name)
     return response
 
@@ -44,8 +45,8 @@ def get_card_approval(card):
     aproval = False
     return aproval
 
-def update_list(card, list):
-    response = card.change_list(list)
+def update_list(card, lista):
+    response = card.change_list(lista)
     return response
 
 def move_approval(event, context):
