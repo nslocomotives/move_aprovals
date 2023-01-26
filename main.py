@@ -84,11 +84,10 @@ def move_approval(event, context):
     #    logger.info('texting %s : %s', recipiant, payload['alert'])
     #    result = send_text(recipiant, payload)
     #    logger.debug(result)
-    #logger.info(" [x] Done")
-    #return message
+    logger.info(" [x] Done")
+    return message
 
     if tt.get_card_approval(card) is True:
         card.change_list(str(tt.upload_list.id))
         logger.info('%s approved', card.name)
-    return 
 logger.info('Finished')
