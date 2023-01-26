@@ -1,3 +1,4 @@
+"""Main module."""
 import logging
 import logging.handlers
 import base64
