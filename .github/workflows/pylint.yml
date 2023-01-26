@@ -15,6 +15,10 @@ jobs:
       TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
 
     steps:
+    - name: webfactory/ssh-agent
+    - uses: webfactory/ssh-agent@v0.7.0
+      with:
+        ssh-private-key: ${{ secrets.GH_TOKEN }}
     - uses: actions/checkout@v3.1.0
     - name: Set up Python 3.8
       uses: actions/setup-python@v4.5.0
@@ -22,7 +26,6 @@ jobs:
         python-version: 3.8
     - name: Install dependencies
       run: |
-        git config --global url."https://${{ secrets.GH_TOKEN }}@github".insteadOf https://github
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         pip install pylint pytest coverage
