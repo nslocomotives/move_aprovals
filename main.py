@@ -26,7 +26,6 @@ logger.addHandler(ch)
 logger.info('Started')
 
 #defining variables
-card_id = ''
 
 #def get_secret(secret_name):
 #    """ A wrapper for the secret variable assignement to perform a get"""
