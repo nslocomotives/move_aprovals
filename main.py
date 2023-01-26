@@ -72,14 +72,17 @@ def move_approval(event, context):
         update_list(card, list)
 
     logger.info(" [x] Received %s | %s", data, context)
-    recipiants = data['recipiants']
-    payload = build_payload(data['alert'])
-    for recipiant in recipiants:
-        logger.info('texting %s : %s', recipiant, payload['alert'])
-        result = send_text(recipiant, payload)
-        logger.debug(result)
-    logger.info(" [x] Done")
-    return message
+
+    ### TODO: need to understand what this bt was for and why...
+
+    #recipiants = data['recipiants']
+    #payload = build_payload(data['alert'])
+    #for recipiant in recipiants:
+    #    logger.info('texting %s : %s', recipiant, payload['alert'])
+    #    result = send_text(recipiant, payload)
+    #    logger.debug(result)
+    #logger.info(" [x] Done")
+    #return message
 
     if tt.get_card_approval(card) is True:
         card.change_list(str(tt.upload_list.id))
