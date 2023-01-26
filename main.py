@@ -1,6 +1,8 @@
-import trello_tools as tt
 import logging
 import logging.handlers
+import base64
+
+import trello_tools as tt
 
 ## quick function to move cards along the board when approved.
 
