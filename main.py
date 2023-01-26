@@ -37,7 +37,7 @@ def unpack_data(data):
 
 def get_card(card_id):
     card = ''
-    card = tt.get_card(card_id)
+    card = tt.get_cards(card_id)
     return card
 
 def get_card_approval(card):
