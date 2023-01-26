@@ -2,6 +2,7 @@
 import logging
 import logging.handlers
 import base64
+import ast
 
 import trello_tools as tt
 
@@ -10,7 +11,8 @@ import trello_tools as tt
 logger = logging.getLogger('moveAprovals')
 logger.setLevel(logging.DEBUG)
 
-fh = logging.handlers.RotatingFileHandler('C:\\repos\\slogan_maker\\automation.log', maxBytes=10240, backupCount=5)
+LOGFILE = 'C:\\repos\\slogan_maker\\automation.log'
+fh = logging.handlers.RotatingFileHandler(LOGFILE, maxBytes=10240, backupCount=5)
 fh.setLevel(logging.DEBUG)
 
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -26,6 +28,15 @@ logger.addHandler(ch)
 logger.info('Started')
 
 #defining variables
+BOARD_NAME = 'Redbubble Process Board'
+LIST_NAME = 'in progress'
+IDEAS_LIST_NAME = 'Phrase ideas'
+REVIEW_LIST_NAME = 'Review'
+UPLOAD_LIST_NAME = 'Ready to upload'
+PARKED_LIST_NAME = 'Parked'
+PUBLISHED_LIST_NAME = 'Published'
+CHECKLIST_NAME = 'automation'
+ITEM = 'generate tags'
 
 #def get_secret(secret_name):
 #    """ A wrapper for the secret variable assignement to perform a get"""
@@ -33,13 +44,22 @@ logger.info('Started')
 #    response = assign_secret_variable(secret_name)
 #    return response
 
-#def unpack_data(data):
-#    """Function to unpack data from its encoded form"""
-#    result = ""
-#    result = base64.b64decode(data).decode('utf-8')
+def unpack_data(data):
+    """Function to unpack data from its encoded form"""
+    result = ""
+    result = base64.b64decode(data).decode('utf-8')
     # TODO: what is this eval doing?  there should be a better way to do this in python. # pylint: disable=W0511
-#    result = ast.literal_eval(result) #pylint disable:W0123
-#    return result
+    result = ast.literal_eval(result) #pylint disable:W0123
+    return result
+
+board = tt.get_board(BOARD_NAME)
+our_list = tt.get_list(board, LIST_NAME)
+review_list = tt.get_list(board, REVIEW_LIST_NAME)
+upload_list = tt.get_list(board, UPLOAD_LIST_NAME)
+parked_list = tt.get_list(board, PARKED_LIST_NAME)
+published_list = tt.get_list(board, PUBLISHED_LIST_NAME)
+ideas_list = tt.get_list(board, IDEAS_LIST_NAME)
+labels = tt.get_labels(board)
 
 def get_card(card_id):
     """Function to get all the data on the card."""
@@ -49,7 +69,8 @@ def get_card(card_id):
 
 def get_card_approval(card):
     """A function to get the just the aproval status of a card."""
-    aproval = False
+    aproval = tt.get_card_approval(card)
+    # aproval = False
     return aproval
 
 def update_list(card, lista):
@@ -85,9 +106,9 @@ def move_approval(event, context):
     #    result = send_text(recipiant, payload)
     #    logger.debug(result)
     logger.info(" [x] Done")
-    return message
 
     if tt.get_card_approval(card) is True:
-        card.change_list(str(tt.upload_list.id))
+        card.change_list(str(upload_list.id))
         logger.info('%s approved', card.name)
+    return message
 logger.info('Finished')
