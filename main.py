@@ -71,7 +71,7 @@ def move_approval(event, context):
     card_id = ''
     card = get_card(card_id)
     aproval = get_card_approval(card)
-    if approval is True:
+    if aproval is True:
         update_list(card, list)
 
     logger.info(" [x] Received %s | %s", data, context)
@@ -90,4 +90,5 @@ def move_approval(event, context):
     if tt.get_card_approval(card) is True:
         card.change_list(str(tt.upload_list.id))
         logger.info('%s approved', card.name)
+    return 
 logger.info('Finished')
