@@ -48,7 +48,7 @@ def unpack_data(data):
     """Function to unpack data from its encoded form"""
     result = ""
     result = base64.b64decode(data).decode('utf-8')
-    # TODO: what is this eval doing?  there should be a better way to do this in python. # pylint: disable=W0511
+    # TODO: what is this eval doing?  there should be a better way to do this in python. # pylint: disable=fixme
     result = ast.literal_eval(result) #pylint disable:W0123
     return result
 
